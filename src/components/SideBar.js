@@ -1,7 +1,7 @@
 import React from "react";
 import { categories } from "../utils/utility";
 
-function SideBar({ selectCategory, setSelectCategory }) {
+function SideBar({ selectCategory, setSelectCategory, setVideos }) {
     return (
         <>
             {categories.map((category, index) => (
@@ -16,7 +16,10 @@ function SideBar({ selectCategory, setSelectCategory }) {
                                 ? "white"
                                 : "black",
                     }}
-                    onClick={() => setSelectCategory(category.name)}
+                    onClick={() => {
+                        setSelectCategory(category.name);
+                        setVideos([]);
+                    }}
                 >
                     <span>{category.icon}</span>
                     <span>{category.name}</span>

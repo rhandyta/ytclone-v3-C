@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { fetchApi } from "../utils/fetchApi";
 import SideBar from "./SideBar";
+import Videos from "./Videos";
 
 function Feed() {
     const [selectCategory, setSelectCategory] = useState("Coding");
+    const [videos, setVideos] = useState([]);
     useEffect(() => {
-        fetchApi(`search?part=snippet,id&q=${selectCategory}`).then((res) => {
-            console.log(res);
+        fetchApi(
+            `search?part=snippet,id&regionCode=ID&q=${selectCategory}`
+        ).then((res) => {
+            setVideos(res.items);
         });
     }, [selectCategory]);
 
@@ -16,9 +20,12 @@ function Feed() {
                 <SideBar
                     selectCategory={selectCategory}
                     setSelectCategory={setSelectCategory}
+                    setVideos={setVideos}
                 />
             </div>
-            <div className=" bg-sky-50 sm:basis-9/12">bidios</div>
+            <div className=" bg-sky-50 sm:basis-9/12">
+                <Videos videos={videos} />
+            </div>
         </div>
     );
 }
