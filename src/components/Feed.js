@@ -16,14 +16,14 @@ function Feed() {
 
     return (
         <div className="min-h-screen flex flex-col sm:flex-row">
-            <div className="flex sm:flex-col sm:basis-3/12 py-2 overflow-x-auto">
+            <div className="flex sm:flex-col sm:basis-3/12 py-2 overflow-x-auto sm:h-screen sm:sticky sm:top-0">
                 <SideBar
                     selectCategory={selectCategory}
                     setSelectCategory={setSelectCategory}
                     setVideos={setVideos}
                 />
             </div>
-            <div className=" bg-sky-50 sm:basis-9/12">
+            <div className=" sm:basis-9/12">
                 <Videos videos={videos} />
             </div>
         </div>
