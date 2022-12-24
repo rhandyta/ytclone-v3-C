@@ -1,8 +1,15 @@
+import { Route, Routes } from "react-router-dom";
+import Feed from "./components/Feed";
+import Navbar from "./components/navbar/Navbar";
+
 function App() {
     return (
-        <div>
-            <h1 className="font-medium text-slate-500">Hello World</h1>
-        </div>
+        <>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Feed />} />
+            </Routes>
+        </>
     );
 }
 
