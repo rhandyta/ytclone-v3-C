@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fetchApi } from "../utils/fetchApi";
 import SideBar from "./SideBar";
 
 function Feed() {
     const [selectCategory, setSelectCategory] = useState("Coding");
+    useEffect(() => {
+        fetchApi(`search?part=snippet,id&q=${selectCategory}`).then((res) => {
+            console.log(res);
+        });
+    }, [selectCategory]);
 
     return (
         <div className="min-h-screen flex flex-col sm:flex-row">
