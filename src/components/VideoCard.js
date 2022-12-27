@@ -5,7 +5,7 @@ function VideoCard({ video }) {
     const { id, snippet } = video;
     return (
         <div>
-            <Link to={`video/${id.videoId}`}>
+            <Link to={`/video/${id.videoId}`}>
                 <img
                     src={snippet.thumbnails.high.url}
                     alt={snippet.title}
