@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import { fetchApi } from "../utils/fetchApi";
+import VideoCard from "./VideoCard";
 
 function VideoDetail() {
     const [detailVideo, setDetailVideo] = useState(null);
@@ -16,7 +17,7 @@ function VideoDetail() {
         fetchApi(
             `search?part=id,snippet&relatedToVideoId=${id}&type=video`
         ).then((res) => {
-            setVideoSuggest(res.items[0]);
+            setVideoSuggest(res.items);
         });
     }, [id]);
     return (
@@ -32,14 +33,18 @@ function VideoDetail() {
                     <h1 className="font-medium text-2xl">
                         {detailVideo?.snippet.title}
                     </h1>
-                    <p className="">
+                    <p className="mb-5">
                         {detailVideo?.statistics.viewCount} Views
                     </p>
                     <p className="mb-4 ">{detailVideo?.snippet.description}</p>
                     <hr />
                 </div>
             </div>
-            <div className="md:basis-3/12 lg:basis-4/12">Videos suggest</div>
+            <div className="md:basis-3/12 lg:basis-4/12 p-2 grid grid-cols-1 justify-center gap-5">
+                {videoSuggest?.map((video) => (
+                    <VideoCard video={video} key={video.id.videoId} />
+                ))}
+            </div>
         </div>
     );
 }
